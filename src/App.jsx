@@ -14,19 +14,18 @@ export const goodsFromServer = [
   'Jam',
   'Garlic',
 ];
+function sortAlphabetique(goods) {
+  return [...goods].sort((a, b) => a.localeCompare(b));
+}
+
+function sortLength(goods) {
+  return [...goods].sort((a, b) => a.length - b.length);
+}
 
 export const App = () => {
   const [goods, setGoods] = useState(goodsFromServer);
   const [reversed, setReversed] = useState(false);
   const [sortType, setSortType] = useState(null);
-
-  function sortAlphabetique(goods) {
-    return [...goods].sort((a, b) => a.localeCompare(b));
-  }
-
-  function sortLength(goods) {
-    return [...goods].sort((a, b) => a.length - b.length);
-  }
 
   // Обновляем список goods при изменении sortType или reversed
   useEffect(() => {
