@@ -14,6 +14,18 @@ export const goodsFromServer = [
   'Jam',
   'Garlic',
 ];
+
+function arraysAreEqual(a, b) {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i+=1) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function sortAlphabetique(goods) {
   return [...goods].sort((a, b) => a.localeCompare(b));
 }
@@ -27,7 +39,6 @@ export const App = () => {
   const [reversed, setReversed] = useState(false);
   const [sortType, setSortType] = useState(null);
 
-  // Обновляем список goods при изменении sortType или reversed
   useEffect(() => {
     let sortedGoods = [...goodsFromServer];
 
@@ -77,7 +88,8 @@ export const App = () => {
           Reverse
         </button>
 
-        {(sortType !== null || reversed) && (
+        {/* {(sortType !== null || reversed) && ( */}
+        {!arraysAreEqual(goods, goodsFromServer) && (
           <button
             type="button"
             className="button is-danger"
